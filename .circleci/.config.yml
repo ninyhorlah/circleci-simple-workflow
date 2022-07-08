@@ -1,0 +1,29 @@
+version: 2.1
+
+jobs:
+  save_hello_world_output:
+    docker:
+      image: alpine:3.16
+    steps:
+    - run: echo "hello world!" > output.txt
+    - persist_to_workspace:
+        root: /tmp/dir
+        path:
+          - output
+
+  print_output_file:
+    docker: 
+      image: alpine:3.16
+    steps:
+    - run: cat output.txt
+    - attach_workspace:
+        at: /tmp/dir
+
+workflows:
+  output_file:
+    jobs:
+      - save_hello_world_output
+      - print_output_file:
+          required:
+            - save_hello_world_output
+
