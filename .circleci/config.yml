@@ -5,21 +5,19 @@ jobs:
     docker:
       - image: alpine:3.16
     steps:
-      - checkout
-      - run: echo "hello world!" > output.txt
+      - run: echo "hello world!" > ~/output.txt
       - persist_to_workspace:
-          root: /tmp/dir
+          root: ~/
           path:
-            - output
+            - output.txt
 
   print_output_file:
     docker: 
       - image: alpine:3.16
     steps:
-      - checkout
-      - run: cat output.txt
       - attach_workspace:
-          at: /tmp/dir
+          at: ~/
+      - run: cat ~/output.txt
 
 workflows:
   output_file:
