@@ -7,7 +7,7 @@ jobs:
     steps:
       - run: echo $MY_ENV_VAR
 
-  workflows:
-    env-var:
-      jobs:
-        - print-name
+workflows:
+  env-var:
+    jobs:
+      - print-name
