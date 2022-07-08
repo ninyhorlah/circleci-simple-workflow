@@ -1,0 +1,12 @@
+version: 2.1
+jobs:
+  print-name:
+    docker:
+      image: circleci/node:3.18.0
+    
+    steps:
+      - run: echo $MY_ENV_VAR
+
+  workflows:
+    env-var:
+      - print-name
