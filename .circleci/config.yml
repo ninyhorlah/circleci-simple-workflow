@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   save_hello_world_output:
     docker:
-      - image: alpine:3.16
+      - image: circleci/node:13.8.0
     steps:
       - run: echo "hello world!" > ~/output.txt
       - persist_to_workspace:
@@ -13,7 +13,7 @@ jobs:
 
   print_output_file:
     docker: 
-      - image: alpine:3.16
+      - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
           at: ~/
