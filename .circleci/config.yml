@@ -1,0 +1,23 @@
+version: 2.1
+
+commands:
+  print_pipeline_id:
+    description: "Prints the pipeline id"
+    parameters:
+      to:
+        type: string
+        default: $CIRCLE_WORKFLOW_ID
+    steps:
+      - run: echo << parameters.to >>
+
+jobs:
+  reuseable-code:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - print_pipeline_id
+
+workflows:
+  pipeline_id: 
+    jobs:
+      - reuseable-code
