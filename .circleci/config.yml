@@ -9,4 +9,5 @@ jobs:
 
   workflows:
     env-var:
-      - print-name
+      jobs:
+        - print-name
