@@ -4,22 +4,12 @@ jobs:
   fail-job:
     docker:
       - image: circleci/node:13.8.0
-    step:
-     - run: |
-        #! /bin/bash
-        echo "Hello world! It has failed."
-        return 1
-
-  run-failed-script:
-    docker:
-      - image: circleci/node:13.8.0
     steps:
-      - run: echo "Hello Error"
-          filters:
-            when: on_fail
+     - run: exit 1
+     - run: echo "Hello Error!!!"
+         when: on_fail
 
 workflows:
   check-if-fail:
     jobs: 
       - fail-job
-      - run-failed-script
